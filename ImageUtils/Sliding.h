@@ -10,7 +10,7 @@
 
 namespace ImageUtils
 {
-    class Sliding
+    class IMAGESLIDING_EXPORT Sliding
     {
 
     public:

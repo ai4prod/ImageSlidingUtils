@@ -9,20 +9,20 @@
 #  ifndef IMAGESLIDING_EXPORT
 #    ifdef imagesliding_EXPORTS
         /* We are building this library */
-#      define IMAGESLIDING_EXPORT __declspec(dllexport)
+#      define IMAGESLIDING_EXPORT __attribute__((visibility("default")))
 #    else
         /* We are using this library */
-#      define IMAGESLIDING_EXPORT __declspec(dllimport)
+#      define IMAGESLIDING_EXPORT __attribute__((visibility("default")))
 #    endif
 #  endif
 
 #  ifndef IMAGESLIDING_NO_EXPORT
-#    define IMAGESLIDING_NO_EXPORT 
+#    define IMAGESLIDING_NO_EXPORT __attribute__((visibility("hidden")))
 #  endif
 #endif
 
 #ifndef IMAGESLIDING_DEPRECATED
-#  define IMAGESLIDING_DEPRECATED __declspec(deprecated)
+#  define IMAGESLIDING_DEPRECATED __attribute__ ((__deprecated__))
 #endif
 
 #ifndef IMAGESLIDING_DEPRECATED_EXPORT

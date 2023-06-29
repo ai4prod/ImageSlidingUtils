@@ -140,18 +140,23 @@ namespace ImageUtils
         int width = origMat.cols;
         std::vector<std::vector<int>> slices;
 
-        //get_slice_bboxes(slices, height, width, sliding_W, sliding_H, overlap_W, overlap_H,false);
+        get_slice_bboxes(slices, height, width, sliding_W, sliding_H, overlap_W, overlap_H,false);
         
         //reserve vector space in order to not double the dimension
         batch_vectors.reserve((int)(slices.size()/batch_size)+1);
 
         std::vector<cv::Mat> tmp_batches;
         tmp_batches.reserve(batch_size);
-
+        
         for (size_t counter = 0; counter < slices.size(); counter++)
         {
+            
+            std::cout << slices[counter][1]<<" "<< slices[counter][3] <<" "<< slices[counter][0]<<" "<< slices[counter][2]<< std::endl;
+            cv::Mat cropped_image = origMat(cv::Range(slices[counter][0], slices[counter][2]), cv::Range(slices[counter][1], slices[counter][3]));
 
-            cv::Mat cropped_image = origMat(cv::Range(slices[counter][1], slices[counter][3]), cv::Range(slices[counter][0], slices[counter][2]));
+            cv::imshow("image", cropped_image);
+            cv::waitKey(0);
+           
 
             tmp_batches.push_back(cropped_image);
 
